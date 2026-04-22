@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete your GameFold account</title>
+  <meta name="description" content="How to delete your GameFold account and associated data. GDPR-compliant permanent deletion, in-app or by email.">
+  <meta name="theme-color" content="#090B0F">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="/">
+      <img src="/assets/icon.png" alt="GameFold logo">
+      <span>GameFold</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <article class="legal-article">
+    <h1 class="page-title">Delete your account</h1>
+    <p class="last-updated">Last updated: April 22, 2026</p>
+
+    <p>You can permanently delete your GameFold account at any time. Deletion is immediate and irreversible — all of your personal data and user-generated content will be removed from our systems.</p>
+
+    <div class="note">
+      <strong>What gets deleted</strong>
+      Your profile (username, bio, avatar, date of birth), email address, game library, reviews, lists, follows, likes, notification tokens, consent records, and all app activity logs. This happens via cascade delete on your profile record — nothing is retained.
+    </div>
+
+    <h2>Option 1 — Delete from inside the app (recommended)</h2>
+    <ol class="steps">
+      <li>Open GameFold and sign in.</li>
+      <li>Go to <strong>Settings</strong> (profile tab → gear icon).</li>
+      <li>Scroll to <strong>Account</strong> and tap <strong>Delete account</strong>.</li>
+      <li>Confirm the destructive action in the two confirmation dialogs.</li>
+    </ol>
+    <p>Your data is removed immediately and you're signed out. You can create a new account later with the same email if you change your mind.</p>
+
+    <h2>Option 2 — Request deletion by email (for users without the app installed)</h2>
+    <p>If you can't or don't want to install the app, send a deletion request from the email address associated with your account:</p>
+    <ol class="steps">
+      <li>Email <a href="mailto:privacy@gamefold.app?subject=Account%20deletion%20request">privacy@gamefold.app</a> from your account's email address.</li>
+      <li>Subject line: <code>Account deletion request</code>.</li>
+      <li>Include your GameFold username (optional but speeds things up).</li>
+      <li>We'll verify ownership of the email and delete your account within 30 days, as required by GDPR Art. 17. In practice most requests are processed within 72 hours.</li>
+    </ol>
+
+    <h2>Retention after deletion</h2>
+    <ul>
+      <li><strong>Personal data in our active databases</strong>: removed immediately on deletion.</li>
+      <li><strong>Encrypted backups</strong>: purged within 30 days of deletion during regular backup rotation.</li>
+      <li><strong>Anonymized analytics</strong> (PostHog, Sentry): aggregate event counts that cannot be traced back to you are retained; any personally identifying records are removed on deletion.</li>
+      <li><strong>Legal obligations</strong>: if we are required by Spanish or EU law to retain specific data (e.g., abuse-related reports for 12 months), we will notify you and retain only the minimum legally required.</li>
+    </ul>
+
+    <h2>What is NOT deleted</h2>
+    <p>If another user has quoted, replied to, or interacted with your content, those interactions are attributed to an anonymous "deleted user" label rather than removed from the interacting user's history. Your username is released and may be registered by another user in the future.</p>
+
+    <h2>Questions</h2>
+    <p>For anything related to your data rights under GDPR/LOPDGDD, including access, rectification, portability, or objections, email <a href="mailto:privacy@gamefold.app">privacy@gamefold.app</a>. You may also file a complaint with the <a href="https://www.aepd.es" target="_blank" rel="noopener">Agencia Española de Protección de Datos (AEPD)</a>.</p>
+
+    <a href="/" class="back-link">← Back to home</a>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Secondary">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/delete-account.html">Delete my account</a>
+    <a href="/support.html">Support</a>
+  </nav>
+  <p class="copy">&copy; GameFold 2026. Built in Spain.</p>
+</footer>
+
+</body>
+</html>
