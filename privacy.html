@@ -28,11 +28,11 @@
 <main class="container">
   <article class="legal-article">
     <h1 class="page-title">Privacy Policy</h1>
-    <p class="last-updated">Last updated: March 17, 2026</p>
+    <p class="last-updated">Last updated: October 11, 2026</p>
 
     <div class="note">
       <strong>Summary</strong>
-      We collect the minimum personal data needed to run GameFold — your email, username, date of birth (for age-gating), and anything you create in the app. Analytics and crash reporting are off by default and only collected if you opt in. You can delete your account and all data at any time.
+      We collect the personal data needed to run GameFold — your email, username, date of birth (to check you are at least 13), and anything you create in the app. If you sign in with Google, we also receive your name and a link to your Google profile picture. Crash reports are on by default, never include your email or username, and you can turn them off; usage analytics are off unless you opt in. You can delete your account and all your data at any time.
     </div>
 
     <h2>1. Data Controller</h2>
@@ -47,8 +47,13 @@
     <ul>
       <li>Email address — for authentication and account recovery</li>
       <li>Username — public identifier within the app</li>
-      <li>Date of birth — for age verification (COPPA and minor content filtering)</li>
-      <li>Profile avatar — optional, uploaded by you</li>
+      <li>Date of birth — to check that you are at least 13 (COPPA)</li>
+      <li>Profile bio and avatar — optional. Your avatar is a generated image or an emoji you pick; the app has no photo upload.</li>
+    </ul>
+
+    <h3>From Google (only if you sign in with Google)</h3>
+    <ul>
+      <li>Your name and a link to your Google profile picture — Google shares them when you sign in, and they are stored with your account by our authentication provider (Supabase)</li>
     </ul>
 
     <h3>User-generated content</h3>
@@ -59,20 +64,18 @@
 
     <h3>Automatically collected data</h3>
     <ul>
-      <li>Device type and operating system</li>
-      <li>App version</li>
-      <li>Anonymous usage analytics (screen views, interactions) — only if you consent</li>
-      <li>Error and crash logs — only if you consent</li>
+      <li>Crash and error reports (Sentry) — on by default, you can turn them off in Settings. A report contains the error and its stack trace, device model, operating system, app version, the recent in-app steps that led to the error, and a random identifier. It never contains your email, username, IP address, screenshots, or recordings of your screen.</li>
+      <li>Usage analytics (PostHog) — only if you opt in. Events such as viewing a game, adding a game to your library, or creating a review or list, linked to your random account ID and the date your account was created, plus device model, operating system, and app version. PostHog may use the IP address of the request to estimate your approximate location (such as your country or city). We never send your email to PostHog.</li>
     </ul>
 
-    <p>We do <strong>not</strong> collect location data, contacts, photos (beyond your avatar upload), or financial information.</p>
+    <p>We do <strong>not</strong> collect your precise location, contacts, photos or files from your device, or financial information. The only location data is the approximate location PostHog may estimate from your IP address, and only if you opt in to usage analytics.</p>
 
     <h2>3. Legal Basis for Processing</h2>
     <p>Under the GDPR and the Spanish LOPDGDD, we process your data on the following legal bases:</p>
     <ul>
       <li><strong>Contract performance</strong> (Art. 6.1.b GDPR): Account data and user-generated content are necessary to provide the service you signed up for.</li>
-      <li><strong>Consent</strong> (Art. 6.1.a GDPR): Analytics (PostHog) and error tracking (Sentry) are only active if you opt in. You may withdraw consent at any time in Settings without affecting the core service.</li>
-      <li><strong>Legitimate interest</strong> (Art. 6.1.f GDPR): Basic security measures, abuse prevention, and service stability.</li>
+      <li><strong>Consent</strong> (Art. 6.1.a GDPR): Usage analytics (PostHog) are only active if you opt in. You may withdraw consent at any time in Settings without affecting the core service.</li>
+      <li><strong>Legitimate interest</strong> (Art. 6.1.f GDPR): Crash and error reports (Sentry) without personal identifiers, to keep the app stable; basic security measures and abuse prevention. You can turn crash reports off at any time in Settings.</li>
     </ul>
 
     <h2>4. How We Use Your Data</h2>
@@ -80,8 +83,8 @@
     <ul>
       <li>Provide and maintain the GameFold service (account, reviews, lists, social features)</li>
       <li>Authenticate you and protect your account</li>
-      <li>Filter mature content for users under 18</li>
-      <li>Improve app performance and fix errors (only with your consent)</li>
+      <li>Enforce the minimum age of 13</li>
+      <li>Fix crashes and errors (unless you turn crash reports off)</li>
       <li>Analyze usage patterns to improve the experience (only with your consent)</li>
       <li>Send push notifications (only if you grant permission)</li>
       <li>Detect and prevent abuse or misuse of the service</li>
@@ -90,9 +93,9 @@
     <h2>5. Third-Party Services</h2>
     <p>We use the following third-party services, each with their own privacy policies:</p>
     <ul>
-      <li><strong>Supabase</strong> (database and authentication) — your account data and content are stored on Supabase infrastructure. Servers located in the EU or US depending on project configuration.</li>
-      <li><strong>PostHog</strong> (product analytics) — collects anonymized usage data. Only active if you consent. Privacy: <a href="https://posthog.com/privacy" target="_blank" rel="noopener">posthog.com/privacy</a></li>
-      <li><strong>Sentry</strong> (error tracking) — collects crash and error reports. Only active if you consent. Privacy: <a href="https://sentry.io/privacy" target="_blank" rel="noopener">sentry.io/privacy</a></li>
+      <li><strong>Supabase</strong> (database &amp; authentication) — your account data and content are stored on Supabase infrastructure. Servers located in the EU/US depending on project configuration.</li>
+      <li><strong>PostHog</strong> (product analytics) — receives usage events linked to a random account ID, never your email. Only active if you opt in. Privacy: <a href="https://posthog.com/privacy" target="_blank" rel="noopener">posthog.com/privacy</a></li>
+      <li><strong>Sentry</strong> (error tracking) — receives crash and error reports without personal identifiers. On by default; you can turn it off in Settings. Privacy: <a href="https://sentry.io/privacy" target="_blank" rel="noopener">sentry.io/privacy</a></li>
       <li><strong>RAWG API</strong> (game data) — we query game information on your behalf; no personal data is shared with RAWG.</li>
       <li><strong>Google Sign-In</strong> (optional authentication) — if you choose to sign in with Google, Google's privacy policy applies to the authentication flow.</li>
     </ul>
@@ -110,7 +113,7 @@
     <ul>
       <li><strong>Account data</strong>: Retained as long as your account is active. Deleted when you delete your account.</li>
       <li><strong>User-generated content</strong> (reviews, lists): Retained as long as your account is active. Permanently deleted upon account deletion via cascade.</li>
-      <li><strong>Analytics data</strong>: Anonymized and aggregated. Individual session data is not retained beyond 90 days.</li>
+      <li><strong>Analytics data</strong>: Linked only to a random account ID (pseudonymous). Individual event data is not retained beyond 90 days.</li>
       <li><strong>Error logs</strong>: Retained for up to 30 days in Sentry, then automatically purged.</li>
       <li><strong>Push notification tokens</strong>: Cleared upon sign-out or account deletion.</li>
     </ul>
@@ -121,18 +124,18 @@
     <ul>
       <li><strong>Access</strong> — View your data directly in the app (profile, reviews, lists, settings).</li>
       <li><strong>Rectification</strong> — Edit your profile, reviews, and lists at any time.</li>
-      <li><strong>Erasure</strong> ("Right to be forgotten") — <a href="/delete-account.html">Delete your account permanently</a>. All data is cascade-deleted.</li>
+      <li><strong>Erasure ("Right to be forgotten")</strong> — <a href="/delete-account.html">Delete your account permanently</a> from Settings. All data is cascade-deleted.</li>
       <li><strong>Data portability</strong> — Request an export of your data by contacting us.</li>
-      <li><strong>Withdraw consent</strong> — Disable analytics and error tracking at any time in Settings → Privacy &amp; Safety.</li>
+      <li><strong>Withdraw consent / opt out</strong> — Turn off usage analytics or crash reports at any time in Settings &gt; Privacy &amp; Safety.</li>
       <li><strong>Restriction of processing</strong> — Contact us to request restriction.</li>
-      <li><strong>Object</strong> — Contact us to object to processing based on legitimate interest.</li>
-      <li><strong>Lodge a complaint</strong> — You may file a complaint with the <a href="https://www.aepd.es" target="_blank" rel="noopener">Agencia Española de Protección de Datos (AEPD)</a> or with your local supervisory authority.</li>
+      <li><strong>Object</strong> — Turn off crash reports in Settings, or contact us to object to any other processing based on legitimate interest.</li>
+      <li><strong>Lodge a complaint</strong> — You may file a complaint with the Agencia Española de Protección de Datos (AEPD) at <a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a> or with your local supervisory authority.</li>
     </ul>
     <p>To exercise any of these rights, use the in-app features or contact us at <a href="mailto:privacy@gamefold.app">privacy@gamefold.app</a>. We will respond within 30 days.</p>
 
     <h2>9. Children's Privacy</h2>
     <p>GameFold is not intended for children under 13. We enforce a minimum age of 13 during registration (COPPA compliance).</p>
-    <p>Users between 13 and 17 are automatically opted out of mature/NSFW content.</p>
+    <p>GameFold does not show sexually explicit games to anyone.</p>
     <p>If we become aware that we have collected personal data from a child under 13, we will promptly delete that data. If you believe a child under 13 is using GameFold, please contact us.</p>
 
     <h2>10. Security</h2>
