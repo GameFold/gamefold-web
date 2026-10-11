@@ -28,21 +28,21 @@
 <main class="container">
   <article class="legal-article">
     <h1 class="page-title">Delete your account</h1>
-    <p class="last-updated">Last updated: April 22, 2026</p>
+    <p class="last-updated">Last updated: October 11, 2026</p>
 
     <p>You can permanently delete your GameFold account at any time. Deletion is immediate and irreversible — all of your personal data and user-generated content will be removed from our systems.</p>
 
     <div class="note">
       <strong>What gets deleted</strong>
-      Your profile (username, bio, avatar, date of birth), email address, game library, reviews, lists, follows, likes, notification tokens, consent records, and all app activity logs. This happens via cascade delete on your profile record — nothing is retained.
+      Your sign-in account (email address and, if you used Google, the name and profile picture link Google shared), your profile (username, bio, avatar choice), date of birth, settings and consent choices, push notification token, game library and ratings, reviews, lists, follows, likes, blocks, reports you filed, and the notifications you received. Deleting your sign-in account deletes everything linked to it in our database.
     </div>
 
     <h2>Option 1 — Delete from inside the app (recommended)</h2>
     <ol class="steps">
       <li>Open GameFold and sign in.</li>
       <li>Go to <strong>Settings</strong> (profile tab → gear icon).</li>
-      <li>Scroll to <strong>Account</strong> and tap <strong>Delete account</strong>.</li>
-      <li>Confirm the destructive action in the two confirmation dialogs.</li>
+      <li>Scroll to <strong>Danger zone</strong> and tap <strong>Delete Account</strong>.</li>
+      <li>Confirm with <strong>Delete Permanently</strong>.</li>
     </ol>
     <p>Your data is removed immediately and you're signed out. You can create a new account later with the same email if you change your mind.</p>
 
@@ -55,16 +55,27 @@
       <li>We'll verify ownership of the email and delete your account within 30 days, as required by GDPR Art. 17. In practice most requests are processed within 72 hours.</li>
     </ol>
 
+    <h2>Delete part of your data (and keep your account)</h2>
+    <p>You don't have to delete your account to remove some of your data. In the app you can:</p>
+    <ul>
+      <li><strong>Reviews</strong>: open one of your reviews and delete it.</li>
+      <li><strong>Lists</strong>: delete a whole list, or edit it to remove games from it.</li>
+      <li><strong>Follows and likes</strong>: unfollow people or remove your like at any time.</li>
+      <li><strong>Bio and avatar</strong>: edit or clear your bio, or switch your avatar, from your profile.</li>
+      <li><strong>Usage analytics and crash reports</strong>: turn them off in Settings &gt; Privacy &amp; Safety. Nothing new is sent after that; what was already sent expires as described in our <a href="/privacy.html">Privacy Policy</a>.</li>
+    </ul>
+    <p>To delete anything else (for example, specific games in your library) without deleting your account, email <a href="mailto:privacy@gamefold.app">privacy@gamefold.app</a> from your account's email address and tell us what to remove. We'll do it within 30 days.</p>
+
     <h2>Retention after deletion</h2>
     <ul>
       <li><strong>Personal data in our active databases</strong>: removed immediately on deletion.</li>
       <li><strong>Encrypted backups</strong>: purged within 30 days of deletion during regular backup rotation.</li>
-      <li><strong>Anonymized analytics</strong> (PostHog, Sentry): aggregate event counts that cannot be traced back to you are retained; any personally identifying records are removed on deletion.</li>
+      <li><strong>Usage analytics and crash reports</strong> (PostHog, Sentry): they are linked only to a random ID, never to your email or username. They are not removed when you delete your account; they expire under the retention periods in our <a href="/privacy.html">Privacy Policy</a>.</li>
       <li><strong>Legal obligations</strong>: if we are required by Spanish or EU law to retain specific data (e.g., abuse-related reports for 12 months), we will notify you and retain only the minimum legally required.</li>
     </ul>
 
     <h2>What is NOT deleted</h2>
-    <p>If another user has quoted, replied to, or interacted with your content, those interactions are attributed to an anonymous "deleted user" label rather than removed from the interacting user's history. Your username is released and may be registered by another user in the future.</p>
+    <p>Notifications your activity created in other people's inboxes (for example, "… started following you") stay there, but without your name: they show "Someone" instead. Your username is released and may be registered by another user in the future.</p>
 
     <h2>Questions</h2>
     <p>For anything related to your data rights under GDPR/LOPDGDD, including access, rectification, portability, or objections, email <a href="mailto:privacy@gamefold.app">privacy@gamefold.app</a>. You may also file a complaint with the <a href="https://www.aepd.es" target="_blank" rel="noopener">Agencia Española de Protección de Datos (AEPD)</a>.</p>
