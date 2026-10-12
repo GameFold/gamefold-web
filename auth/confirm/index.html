@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- The URL carries a one-time token: keep it out of search engines and Referer headers. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Confirm your email — GameFold</title>
+  <meta name="theme-color" content="#090B0F">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="/">
+      <img src="/assets/icon.png" alt="GameFold logo">
+      <span>GameFold</span>
+    </a>
+  </div>
+</header>
+
+<main class="confirm-page" aria-live="polite">
+  <h1 id="title">Confirm your email</h1>
+  <p id="message">Tap the button to finish creating your GameFold account.</p>
+  <button id="confirm" class="cta" type="button" hidden>Confirm my email</button>
+  <a id="open-app" class="cta" href="gamefold://auth/sign-in" hidden>Open GameFold</a>
+  <p id="hint" class="hint" hidden></p>
+  <p id="support" class="hint" hidden>
+    <span id="support-label">Need help? Write to</span>
+    <a href="mailto:support@gamefold.app">support@gamefold.app</a>
+  </p>
+  <noscript>
+    <p>Turn on JavaScript to confirm your email. / Activa JavaScript para confirmar tu correo.</p>
+  </noscript>
+</main>
+
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Secondary">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/support.html">Support</a>
+  </nav>
+  <p class="copy">&copy; GameFold 2026</p>
+</footer>
+
+<script>
+  // Sign-up confirmation (GameFold/GameFold#164).
+  //
+  // The confirmation email (supabase/templates/confirmation.html in the app
+  // repo) links here with ?token_hash=…&type=email&lang=en|es. The token is
+  // only verified when the user taps the button: mail scanners open links on
+  // their own, and verifying on load would let them use the token up.
+  //
+  // Both values below are public by design (Tier 1 in the app repo's
+  // docs/SECURITY.md): the same ones ship inside the Android app. Supabase's
+  // row-level security protects the data, not these keys.
+  (function () {
+    'use strict';
+
+    var SUPABASE_URL = 'https://ajcenmeaovqcwjbbexan.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFqY2VubWVhb3ZxY3dqYmJleGFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NjU1MzUsImV4cCI6MjA3NjA0MTUzNX0.D52JFpye3nG6Bc9Ri8puJ6Wz4Vo2H3hbDRrkQcWiTBs';
+    var ALLOWED_TYPES = ['email', 'signup'];
+
+    var COPY = {
+      en: {
+        docTitle: 'Confirm your email — GameFold',
+        readyTitle: 'Confirm your email',
+        readyMessage: 'Tap the button to finish creating your GameFold account.',
+        confirm: 'Confirm my email',
+        confirming: 'Confirming…',
+        successTitle: 'Your email is confirmed',
+        successMessage: 'Your account is ready. Open GameFold and sign in with your email and password.',
+        openApp: 'Open GameFold',
+        successHint: 'On a computer? Open GameFold on your phone.',
+        expiredTitle: 'This link has expired or was already used',
+        expiredMessage: 'If you already confirmed your email, just sign in to GameFold.',
+        invalidTitle: "This link isn't complete",
+        invalidMessage: "Open the link from your GameFold email again. If that doesn't work, copy the whole link into your browser.",
+        errorTitle: "We couldn't confirm your email",
+        errorMessage: 'Check your connection and try again.',
+        retry: 'Try again',
+        support: 'Need help? Write to'
+      },
+      es: {
+        docTitle: 'Confirma tu correo — GameFold',
+        readyTitle: 'Confirma tu correo',
+        readyMessage: 'Toca el botón para terminar de crear tu cuenta de GameFold.',
+        confirm: 'Confirmar mi correo',
+        confirming: 'Confirmando…',
+        successTitle: 'Tu correo está confirmado',
+        successMessage: 'Tu cuenta está lista. Abre GameFold e inicia sesión con tu correo y contraseña.',
+        openApp: 'Abrir GameFold',
+        successHint: '¿Estás en una computadora? Abre GameFold en tu teléfono.',
+        expiredTitle: 'Este enlace venció o ya se usó',
+        expiredMessage: 'Si ya confirmaste tu correo, solo inicia sesión en GameFold.',
+        invalidTitle: 'Este enlace está incompleto',
+        invalidMessage: 'Vuelve a abrir el enlace desde el correo de GameFold. Si no funciona, copia el enlace completo en tu navegador.',
+        errorTitle: 'No pudimos confirmar tu correo',
+        errorMessage: 'Revisa tu conexión e inténtalo de nuevo.',
+        retry: 'Intentar de nuevo',
+        support: '¿Necesitas ayuda? Escríbenos a'
+      }
+    };
+
+    var params = new URLSearchParams(window.location.search);
+    var langParam = params.get('lang');
+    var lang = langParam === 'es' || langParam === 'en'
+      ? langParam
+      : (/^es\b/i.test(navigator.language || '') ? 'es' : 'en');
+    var text = COPY[lang];
+    var tokenHash = params.get('token_hash');
+    var type = params.get('type') || 'email';
+
+    var el = {
+      title: document.getElementById('title'),
+      message: document.getElementById('message'),
+      confirm: document.getElementById('confirm'),
+      openApp: document.getElementById('open-app'),
+      hint: document.getElementById('hint'),
+      support: document.getElementById('support'),
+      supportLabel: document.getElementById('support-label')
+    };
+
+    document.documentElement.lang = lang;
+    document.title = text.docTitle;
+    el.openApp.textContent = text.openApp;
+    el.supportLabel.textContent = text.support;
+
+    function show(state) {
+      el.confirm.hidden = !(state === 'ready' || state === 'working' || state === 'error');
+      el.confirm.disabled = state === 'working';
+      el.openApp.hidden = state !== 'success' && state !== 'expired';
+      el.hint.hidden = state !== 'success';
+      el.support.hidden = state !== 'expired' && state !== 'error' && state !== 'invalid';
+
+      if (state === 'ready' || state === 'working') {
+        el.title.textContent = text.readyTitle;
+        el.message.textContent = text.readyMessage;
+        el.confirm.textContent = state === 'working' ? text.confirming : text.confirm;
+      } else if (state === 'success') {
+        el.title.textContent = text.successTitle;
+        el.message.textContent = text.successMessage;
+        el.hint.textContent = text.successHint;
+      } else if (state === 'expired') {
+        el.title.textContent = text.expiredTitle;
+        el.message.textContent = text.expiredMessage;
+      } else if (state === 'invalid') {
+        el.title.textContent = text.invalidTitle;
+        el.message.textContent = text.invalidMessage;
+      } else {
+        el.title.textContent = text.errorTitle;
+        el.message.textContent = text.errorMessage;
+        el.confirm.textContent = text.retry;
+      }
+    }
+
+    function forgetToken() {
+      // Drop the used token from the address bar and the history entry.
+      window.history.replaceState(null, '', window.location.pathname + '?lang=' + lang);
+    }
+
+    // verify returns a session we don't need here: the user signs in to the
+    // app. Revoke it so no live refresh token is left behind.
+    function revoke(accessToken) {
+      if (!accessToken) return;
+      fetch(SUPABASE_URL + '/auth/v1/logout?scope=local', {
+        method: 'POST',
+        headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + accessToken }
+      }).catch(function () {});
+    }
+
+    function verify() {
+      show('working');
+      fetch(SUPABASE_URL + '/auth/v1/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON_KEY },
+        body: JSON.stringify({ type: type, token_hash: tokenHash })
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (body) {
+            if (res.ok) {
+              revoke(body.access_token);
+              forgetToken();
+              show('success');
+            } else if (res.status === 403 || body.error_code === 'otp_expired') {
+              forgetToken();
+              show('expired');
+            } else {
+              show('error');
+            }
+          });
+        })
+        .catch(function () {
+          show('error');
+        });
+    }
+
+    if (!tokenHash || ALLOWED_TYPES.indexOf(type) === -1) {
+      show('invalid');
+      return;
+    }
+
+    el.confirm.addEventListener('click', verify);
+    show('ready');
+  })();
+</script>
+
+</body>
+</html>

@@ -11,6 +11,7 @@ Static site served via GitHub Pages at `gamefold.app`.
 - `/terms.html` — Terms of Service
 - `/delete-account.html` — Public account deletion instructions (required by Google Play)
 - `/support.html` — Support & FAQ
+- `/auth/confirm/` — Sign-up email confirmation (EN/ES). The app's confirmation email links here with a one-time `token_hash`; the page verifies it with Supabase when the user taps the button. Not indexed. See [GameFold#164](https://github.com/GameFold/GameFold/issues/164) and the "Auth emails" section of `docs/SECURITY.md` in the app repo.
 - `/404.html` — Not-found page
 
 ## Local preview
