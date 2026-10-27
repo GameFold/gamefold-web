@@ -192,6 +192,11 @@ a:hover {
   margin-bottom: 0.5rem;
 }
 
+.lang-switch {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
 .last-updated {
   color: var(--text-muted);
   font-size: 0.9rem;
