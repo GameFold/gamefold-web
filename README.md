@@ -9,9 +9,12 @@ Static site served via GitHub Pages at `gamefold.app`.
 - `/` — Landing
 - `/privacy.html` — Privacy Policy (GDPR / LOPDGDD / COPPA aligned)
 - `/terms.html` — Terms of Service
+- `/es/privacy.html`, `/es/terms.html` — Spanish versions of the two above, linked both ways
 - `/delete-account.html` — Public account deletion instructions (required by Google Play)
 - `/support.html` — Support & FAQ
 - `/404.html` — Not-found page
+
+The legal pages mirror the in-app text in `src/constants/legalContent.ts` (GameFold repo), in English and Spanish. Change both languages, in the app and here, together.
 
 ## Local preview
 
